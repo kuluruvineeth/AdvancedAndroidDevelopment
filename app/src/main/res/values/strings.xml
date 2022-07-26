@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DataBinding</string>
+    <string name="insert_your_name_here">Insert your name here</string>
+    <string name="submit">Submit</string>
 </resources>
