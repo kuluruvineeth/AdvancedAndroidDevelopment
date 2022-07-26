@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayGreeting(){
-        binding.greetingTextView.text = "hello! " + binding.nameEditText.text
+        //binding.greetingTextView.text = "hello! " + binding.nameEditText.text
+        //or
+        binding.apply {
+            greetingTextView.text = "hello! " + nameEditText.text
+        }
     }
 }
