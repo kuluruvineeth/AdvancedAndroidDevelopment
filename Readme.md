@@ -1,5 +1,9 @@
-# ViewModelFactory
-- Needed when we need to use custom viewModels with constructor parameters.
+# LiveData
+- .A lifecycle aware observable data holder class.
+- LiveData only updates observers in an active lifecycle state.
+- Automatically update UI when app data changes.
+- no need to write codes to handle lifecylce manually.
+- A MutableLiveData object allows us to change/update its data.
 
 ## Output
 
