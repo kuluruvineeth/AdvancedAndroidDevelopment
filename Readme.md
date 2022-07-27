@@ -1,5 +1,5 @@
-# ViewModelDataBinding
-- .A Direct way of binding viewModel in xml layout.
+# LiveData with DataBinding
+- Referencing directly livedata in xml as it is associated with lifecycle of activity.
 
 ## Output
 
