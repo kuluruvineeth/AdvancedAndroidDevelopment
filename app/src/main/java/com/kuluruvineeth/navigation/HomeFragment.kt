@@ -1,10 +1,12 @@
 package com.kuluruvineeth.navigation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.kuluruvineeth.navigation.databinding.FragmentHomeBinding
@@ -18,7 +20,8 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
         binding.button.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_secondFragment)
+            val bundle = bundleOf("user_input" to binding.editText.text.toString())
+            it.findNavController().navigate(R.id.action_homeFragment_to_secondFragment,bundle)
         }
         return binding.root
     }
