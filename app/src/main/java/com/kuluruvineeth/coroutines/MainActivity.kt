@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private var count=0
@@ -19,7 +22,11 @@ class MainActivity : AppCompatActivity() {
             tvCount.text = count++.toString()
         }
         btnDownloadUserData.setOnClickListener {
-            downloadUserData()
+
+            //defines coroutines scope and builds
+            CoroutineScope(Dispatchers.IO).launch {
+                downloadUserData()
+            }
         }
     }
     private fun downloadUserData(){
