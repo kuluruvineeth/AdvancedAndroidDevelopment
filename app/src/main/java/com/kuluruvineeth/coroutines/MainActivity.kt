@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         }*/
         CoroutineScope(Dispatchers.IO).launch{
             Log.i("MyTag","Calculation started....")
-            val stock1 = getStock()
-            val stock2 = getStock1()
-            val total = stock1+stock2
+            val stock1 = async{getStock()}
+            val stock2 = async{getStock1()}
+            val total = stock1.await()+stock2.await()
             Log.i("MyTag","Total is $total")
         }
     }
