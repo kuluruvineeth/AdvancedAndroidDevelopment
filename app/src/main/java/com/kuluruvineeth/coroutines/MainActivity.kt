@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
     private var count=0
@@ -16,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val tvCount = findViewById<TextView>(R.id.tvCount)
+        /*val tvCount = findViewById<TextView>(R.id.tvCount)
         val btnCount = findViewById<Button>(R.id.btnCount)
         val btnDownloadUserData = findViewById<Button>(R.id.btnDownloadUserData)
         tvUserMessage = findViewById<TextView>(R.id.tvUserMessage)
@@ -30,6 +27,13 @@ class MainActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 downloadUserData()
             }
+        }*/
+        CoroutineScope(Dispatchers.IO).launch{
+            Log.i("MyTag","Calculation started....")
+            val stock1 = getStock()
+            val stock2 = getStock1()
+            val total = stock1+stock2
+            Log.i("MyTag","Total is $total")
         }
     }
     private suspend fun downloadUserData(){
@@ -39,5 +43,17 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private suspend fun getStock() : Int {
+        delay(10000)
+        Log.i("MyTag","stock 1 returned")
+        return 55000
+    }
+
+    private suspend fun getStock1() : Int {
+        delay(8000)
+        Log.i("MyTag","stock 2 returned")
+        return 35000
     }
 }
