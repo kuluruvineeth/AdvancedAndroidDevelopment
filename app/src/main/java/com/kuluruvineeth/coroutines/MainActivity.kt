@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,11 +29,20 @@ class MainActivity : AppCompatActivity() {
                 downloadUserData()
             }
         }*/
-        CoroutineScope(Dispatchers.IO).launch{
+        /*CoroutineScope(Dispatchers.IO).launch{
             Log.i("MyTag","Calculation started....")
             val stock1 = async{getStock()}
             val stock2 = async{getStock1()}
             val total = stock1.await()+stock2.await()
+            Log.i("MyTag","Total is $total")
+        }*/
+        //other way
+        CoroutineScope(Dispatchers.Main).launch{
+            Log.i("MyTag","Calculation started....")
+            val stock1 = async(Dispatchers.IO){getStock()}
+            val stock2 = async(Dispatchers.IO){getStock1()}
+            val total = stock1.await()+stock2.await()
+            Toast.makeText(applicationContext,"Total is $total",Toast.LENGTH_SHORT).show()
             Log.i("MyTag","Total is $total")
         }
     }
