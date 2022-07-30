@@ -1,5 +1,6 @@
 package com.kuluruvineeth.room
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,6 +20,11 @@ class SubscriberViewModel(
     val inputEmail = MutableLiveData<String?>()
     val saveOrUpdateButtonText = MutableLiveData<String>()
     val clearAllOrDeleteButtonText = MutableLiveData<String>()
+
+    private val statusMessage = MutableLiveData<Event<String>>()
+
+    val message : LiveData<Event<String>>
+        get() = statusMessage
 
     init {
         saveOrUpdateButtonText.value = "Save"
@@ -50,6 +56,7 @@ class SubscriberViewModel(
     fun insert(subscriber: Subscriber){
         viewModelScope.launch {
             repository.insert(subscriber)
+            statusMessage.value = Event("Subscriber inserted successfully")
         }
     }
 
@@ -61,6 +68,7 @@ class SubscriberViewModel(
             isUpdateOrDelete = false
             saveOrUpdateButtonText.value = "Save"
             clearAllOrDeleteButtonText.value = "Clear All"
+            statusMessage.value = Event("Subscriber updated successfully")
         }
     }
 
@@ -72,12 +80,14 @@ class SubscriberViewModel(
             isUpdateOrDelete = false
             saveOrUpdateButtonText.value = "Save"
             clearAllOrDeleteButtonText.value = "Clear All"
+            statusMessage.value = Event("Subscriber deleted successfully")
         }
     }
 
     fun clearAll(){
         viewModelScope.launch {
             repository.deleteAll()
+            statusMessage.value = Event("All Subscriber Deleted Successfully")
         }
     }
 
