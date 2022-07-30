@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
             //defines coroutines scope and builds
             CoroutineScope(Dispatchers.Main).launch {
-                tvUserMessage.text = UserDataManager1().getTotalUserCount().toString()
+                //tvUserMessage.text = UserDataManager1().getTotalUserCount().toString()
+                tvUserMessage.text = UserDataManager2().getTotalUserCount().toString()
             }
         }
         /*CoroutineScope(Dispatchers.IO).launch{
