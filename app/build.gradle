@@ -30,7 +30,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    //fior enabling data binding
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            freeCompilerArgs += [
+                    "-Xjvm-default=all",
+            ]
+        }
+    }
+    //for enabling data binding
     buildFeatures{
         dataBinding true
     }

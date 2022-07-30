@@ -1,7 +1,7 @@
 package com.kuluruvineeth.room.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SubscriberDAO {
@@ -18,5 +18,5 @@ interface SubscriberDAO {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM subscriber_data_table")
-    fun getAllSubscribers():Flow<List<Subscriber>>
+    fun getAllSubscribers():LiveData<List<Subscriber>>
 }
