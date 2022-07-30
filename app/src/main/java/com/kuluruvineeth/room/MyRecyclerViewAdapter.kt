@@ -8,7 +8,8 @@ import com.kuluruvineeth.room.databinding.ListItemBinding
 import com.kuluruvineeth.room.db.Subscriber
 
 class MyRecyclerViewAdapter(
-    private val subscribersList : List<Subscriber>
+    private val subscribersList : List<Subscriber>,
+    private val clickListener:(Subscriber)->Unit
 ) : RecyclerView.Adapter<MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,7 +19,7 @@ class MyRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(subscribersList[position])
+        holder.bind(subscribersList[position],clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -28,8 +29,11 @@ class MyRecyclerViewAdapter(
 }
 
 class MyViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(subscriber: Subscriber){
+    fun bind(subscriber: Subscriber,clickListener:(Subscriber)->Unit){
         binding.nameTextView.text = subscriber.name
         binding.emailTextView.text = subscriber.email
+        binding.listItemLayout.setOnClickListener {
+            clickListener(subscriber)
+        }
     }
 }
