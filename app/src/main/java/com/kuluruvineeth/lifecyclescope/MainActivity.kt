@@ -2,10 +2,12 @@ package com.kuluruvineeth.lifecyclescope
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.lifecycle.lifecycleScope
 import com.kuluruvineeth.lifecyclescope.ui.main.MainFragment
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -21,11 +23,14 @@ class MainActivity : AppCompatActivity() {
                 .commitNow()
         }
 
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             delay(5000)
             progressBar.visibility = View.VISIBLE
             delay(10000)
             progressBar.visibility = View.GONE
+        }*/
+        lifecycleScope.launch(Dispatchers.IO){
+            Log.i("MyTag","thread is : ${Thread.currentThread().name}")
         }
     }
 }
