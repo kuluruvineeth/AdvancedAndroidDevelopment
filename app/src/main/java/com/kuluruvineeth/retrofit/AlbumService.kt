@@ -1,9 +1,7 @@
 package com.kuluruvineeth.retrofit
 
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface AlbumService {
     @GET("/albums")
@@ -14,4 +12,7 @@ interface AlbumService {
 
     @GET("/albums/{id}")
     suspend fun getAlbum(@Path(value = "id")albumId:Int) : Response<AlbumItem>
+
+    @POST("/albums")
+    suspend fun uploadAlbum(@Body album:AlbumItem) : Response<AlbumItem>
 }
