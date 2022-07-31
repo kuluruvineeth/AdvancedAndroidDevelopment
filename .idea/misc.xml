@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/Notifications/app/src/main/res/layout/activity_details.xml" value="0.1" />
         <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/Notifications/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/kulreddy/Documents/Dev/books/Android/Notifications/app/src/main/res/layout/activity_settings.xml" value="0.1" />
       </map>
     </option>
   </component>
